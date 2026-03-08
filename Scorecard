@@ -1,0 +1,63 @@
+def get_scorecard(innings_data):
+
+    innings = ast.literal_eval(innings_data)
+
+    scorecards = []
+
+    for inning in innings:
+        inning_name = list(inning.keys())[0]
+        data = inning[inning_name]
+
+        deliveries = data['deliveries']
+
+        batsman_runs = {}
+        bowler_wickets = {}
+
+        for ball in deliveries:
+            over = list(ball.keys())[0]
+            details = ball[over]
+
+            batsman = details['batsman']
+            bowler = details['bowler']
+
+            runs = details['runs']['batsman']
+
+            batsman_runs[batsman] = batsman_runs.get(batsman,0) + runs
+
+            if 'wicket' in details:
+                bowler_wickets[bowler] = bowler_wickets.get(bowler,0) + 1
+
+        top_batsmen = pd.DataFrame(
+            sorted(batsman_runs.items(), key=lambda x:x[1], reverse=True)[:4],
+            columns=['Batsman','Runs']
+        )
+
+        top_bowlers = pd.DataFrame(
+            sorted(bowler_wickets.items(), key=lambda x:x[1], reverse=True)[:4],
+            columns=['Bowler','Wickets']
+        )
+
+        scorecard = pd.concat([top_batsmen, top_bowlers], axis=1)
+        scorecards.append(scorecard)
+
+    return scorecards
+     
+
+match_scorecards = get_scorecard(df['innings'][0])
+
+team1_scorecard = match_scorecards[0]
+team2_scorecard = match_scorecards[1]
+
+print(team1_scorecard)
+print(team2_scorecard)
+     
+     Batsman  Runs          Bowler  Wickets
+0   AJ Finch    43      SL Malinga        2
+1  M Klinger    38  PADLR Sandakan        1
+2    TM Head    31   DAS Gunaratne        1
+3  AJ Turner    18   JRMVB Sanjaya        1
+           Batsman  Runs      Bowler  Wickets
+0    DAS Gunaratne    52     A Zampa      2.0
+1   EMDY Munaweera    44   AJ Turner      2.0
+2      N Dickwella    30  PJ Cummins      1.0
+3  TAM Siriwardana    15         NaN      NaN
