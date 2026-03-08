@@ -1,0 +1,13 @@
+df['teams'] = df['teams'].apply(ast.literal_eval)
+
+df['team_pair'] = df['teams'].apply(lambda x: tuple(sorted(x)))
+
+top_pair = df['team_pair'].value_counts().head(1)
+
+print("\nMost frequent team pair:")
+print(top_pair)
+     
+Most frequent team pair:
+team_pair
+(Australia, England)    45
+Name: count, dtype: int64
