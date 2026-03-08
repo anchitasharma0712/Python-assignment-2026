@@ -1,0 +1,6 @@
+import pandas as pd
+df = pd.read_csv("International_T20_Data.csv")
+venue_counts = df['info.venue'].value_counts()
+top_three_venues = venue_counts.head(3)
+print("Top 3 venues that hosted the greatest number of matches:")
+print(top_three_venues)
