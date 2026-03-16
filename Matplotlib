@@ -1,0 +1,135 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# Load dataset
+df = pd.read_csv("International_T20_Data.csv")
+
+# Clean column names
+df.columns = df.columns.str.strip()
+
+# Convert numeric columns
+df["info.outcome.by.runs"] = pd.to_numeric(df["info.outcome.by.runs"], errors="coerce")
+df["info.outcome.by.wickets"] = pd.to_numeric(df["info.outcome.by.wickets"], errors="coerce")
+
+1. Line Plot (plt.plot)
+plt.figure()
+plt.plot(df["info.outcome.by.runs"].dropna())
+plt.title("Runs Margin Trend")
+plt.xlabel("Match Index")
+plt.ylabel("Runs")
+plt.show()
+
+2. Scatter Plot (plt.scatter)
+plt.figure()
+plt.scatter(df["info.outcome.by.runs"], df["info.outcome.by.wickets"])
+plt.xlabel("Runs")
+plt.ylabel("Wickets")
+plt.title("Runs vs Wickets")
+plt.show()
+
+3. Bar Chart (plt.bar)
+winner_counts = df["info.outcome.winner"].value_counts().head(10)
+
+plt.figure()
+plt.bar(winner_counts.index, winner_counts.values)
+plt.xticks(rotation=90)
+plt.title("Top 10 Teams by Wins")
+plt.show()
+
+4. Horizontal Bar Chart (plt.barh)
+plt.figure()
+plt.barh(winner_counts.index, winner_counts.values)
+plt.title("Top Teams by Wins")
+plt.show()
+
+5. Histogram (plt.hist)
+plt.figure()
+plt.hist(df["info.outcome.by.runs"].dropna(), bins=20)
+plt.title("Distribution of Runs Margin")
+plt.xlabel("Runs")
+plt.ylabel("Frequency")
+plt.show()
+
+6. Pie Chart (plt.pie)
+toss_counts = df["info.toss.decision"].value_counts()
+
+plt.figure()
+plt.pie(toss_counts.values, labels=toss_counts.index, autopct="%1.1f%%")
+plt.title("Toss Decision Distribution")
+plt.show()
+
+7. Box Plot (plt.boxplot)
+plt.figure()
+plt.boxplot(df["info.outcome.by.runs"].dropna())
+plt.title("Boxplot of Runs Margin")
+plt.show()
+
+8. Stem Plot (plt.stem)
+runs = df["info.outcome.by.runs"].dropna().head(20)
+
+plt.figure()
+plt.stem(runs)
+plt.title("Stem Plot of Runs")
+plt.show()
+
+9. Step Plot (plt.step)
+runs = df["info.outcome.by.runs"].dropna().head(50)
+
+plt.figure()
+plt.step(range(len(runs)), runs)
+plt.title("Step Plot of Runs")
+plt.show()
+
+10. Area Plot (plt.fill_between)
+runs = df["info.outcome.by.runs"].dropna().head(50)
+
+plt.figure()
+plt.fill_between(range(len(runs)), runs)
+plt.title("Area Plot of Runs")
+plt.show()
+
+11. Stack Plot (plt.stackplot)
+runs = df["info.outcome.by.runs"].dropna().head(20)
+wickets = df["info.outcome.by.wickets"].dropna().head(20)
+
+plt.figure()
+plt.stackplot(range(len(runs)), runs, wickets)
+plt.title("Stack Plot")
+plt.show()
+
+12. Error Bar Plot (plt.errorbar)
+runs = df["info.outcome.by.runs"].dropna().head(20)
+
+plt.figure()
+plt.errorbar(range(len(runs)), runs, yerr=2)
+plt.title("Error Bar Plot")
+plt.show()
+
+13. Violin Plot (plt.violinplot)
+plt.figure()
+plt.violinplot(df["info.outcome.by.runs"].dropna())
+plt.title("Violin Plot")
+plt.show()
+
+14. Hexbin Plot (plt.hexbin)
+plt.figure()
+plt.hexbin(df["info.outcome.by.runs"], df["info.outcome.by.wickets"], gridsize=20)
+plt.title("Hexbin Plot")
+plt.show()
+
+15. Subplots (plt.subplot)
+Python
+Copy code
+plt.figure()
+
+plt.subplot(1,2,1)
+plt.hist(df["info.outcome.by.runs"].dropna())
+plt.title("Runs Histogram")
+
+plt.subplot(1,2,2)
+plt.hist(df["info.outcome.by.wickets"].dropna())
+plt.title("Wickets Histogram")
+
+plt.show()
+
+
