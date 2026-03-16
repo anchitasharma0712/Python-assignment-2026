@@ -1,0 +1,64 @@
+1. Import Pandas and Load Dataset
+import pandas as pd
+df = pd.read_csv("International_T20_Data.csv")
+print(df.head())
+
+2. head()
+print(df.head())
+
+3. tail()
+print(df.tail())
+
+4. info()
+print(df.info())
+
+5. describe()
+print(df.describe())
+
+6. shape
+print(df.shape)
+
+7. columns
+print(df.columns)
+
+8. value_counts()
+print(df["info.outcome.winner"].value_counts())
+
+9. isnull()
+print(df.isnull().sum())
+
+10. dropna()
+clean_df = df.dropna()
+print(clean_df.head())
+
+11. fillna()
+df["info.outcome.by.runs"] = df["info.outcome.by.runs"].fillna(0)
+
+12. groupby()
+group_data = df.groupby("info.gender")["info.outcome.by.runs"].mean()
+print(group_data)
+
+13. sort_values()
+sorted_df = df.sort_values(by="info.outcome.by.runs", ascending=False)
+print(sorted_df.head())
+
+14. loc[]
+print(df.loc[df["info.outcome.by.runs"] > 50])
+
+15. iloc[]
+print(df.iloc[0:10])
+
+16. unique()
+print(df["info.city"].unique())
+
+17. nunique()
+print(df["info.city"].nunique())
+
+18. rename()
+df.rename(columns={"info.city": "City"}, inplace=True)
+
+19. drop()
+df.drop(columns=["info.match_type"], inplace=True)
+
+20. corr()
+print(df[["info.outcome.by.runs","info.outcome.by.wickets"]].corr())
