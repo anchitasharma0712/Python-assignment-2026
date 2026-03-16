@@ -1,0 +1,71 @@
+1. Import Libraries and Load Dataset
+import numpy as np
+import pandas as pd
+
+df = pd.read_csv("International_T20_Data.csv")
+
+runs = pd.to_numeric(df["info.outcome.by.runs"], errors="coerce").dropna().to_numpy()
+wickets = pd.to_numeric(df["info.outcome.by.wickets"], errors="coerce").dropna().to_numpy()
+
+2. np.array()
+runs_array = np.array(runs)
+print(runs_array)
+
+3. np.mean()
+print("Average Runs Margin:", np.mean(runs))
+
+4. np.median()
+print("Median Runs Margin:", np.median(runs))
+
+5. np.std()
+print("Standard Deviation:", np.std(runs))
+
+6. np.var()
+print("Variance:", np.var(runs))
+
+7. np.min()
+print("Minimum Runs:", np.min(runs))
+
+8. np.max()
+print("Maximum Runs:", np.max(runs))
+
+9. np.sum()
+print("Total Runs Margin:", np.sum(runs))
+
+10. np.sort()
+sorted_runs = np.sort(runs)
+print(sorted_runs)
+
+11. np.unique()
+print(np.unique(wickets))
+
+12. np.reshape()
+reshaped = runs[:20].reshape(4,5)
+print(reshaped)
+
+13. np.linspace()
+print(np.linspace(0,100,10))
+
+14. np.arange()
+print(np.arange(0,50,5))
+
+15. np.random.randint()
+random_sample = np.random.randint(0,100,10)
+print(random_sample)
+
+16. np.sqrt()
+print(np.sqrt(runs[:10]))
+
+17. np.log()
+print(np.log(runs[:10] + 1)
+
+18. np.corrcoef()
+print(np.corrcoef(runs[:100], wickets[:100]))
+
+19. np.concatenate()
+combined = np.concatenate((runs[:10], wickets[:10]))
+print(combined)
+
+20. np.where()
+high_margin = np.where(runs > 50)
+print(runs[high_margin])
