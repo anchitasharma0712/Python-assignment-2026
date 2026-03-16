@@ -1,0 +1,87 @@
+1. countplot()
+import seaborn as sns
+import matplotlib.pyplot as plt
+
+sns.countplot(x="info.gender", data=df)
+plt.title("Count of Matches by Gender")
+plt.show()
+
+
+2.barplot()
+sns.barplot(x="info.toss.decision", y="info.outcome.by.runs", data=df)
+plt.title("Average Runs by Toss Decision")
+plt.show()
+
+
+3.histplot()
+sns.histplot(df["info.outcome.by.runs"], kde=True)
+plt.title("Distribution of Runs")
+plt.show()
+
+
+4.kdeplot()
+sns.kdeplot(df["info.outcome.by.runs"], fill=True)
+plt.title("Density Plot of Runs")
+plt.show()
+
+
+5.boxplot()
+sns.boxplot(x="info.toss.decision", y="info.outcome.by.runs", data=df)
+plt.title("Boxplot of Runs by Toss Decision")
+plt.show()
+
+
+6.violinplot()
+sns.violinplot(x="info.gender", y="info.outcome.by.wickets", data=df)
+plt.title("Violin Plot")
+plt.show()
+
+
+7.stripplot()
+sns.stripplot(x="info.toss.decision", y="info.outcome.by.runs", data=df)
+plt.title("Strip Plot")
+plt.show()
+
+
+8.swarmplot()
+sns.swarmplot(x="info.toss.decision", y="info.outcome.by.wickets", data=df)
+plt.title("Swarm Plot")
+plt.show()
+
+
+9.scatterplot()
+sns.scatterplot(x="info.outcome.by.runs", y="info.outcome.by.wickets", data=df)
+plt.title("Scatter Plot")
+plt.show()
+
+
+10.lineplot()
+sns.lineplot(x=df.index, y="info.outcome.by.runs", data=df)
+plt.title("Line Plot")
+plt.show()
+
+
+11.heatmap()
+sns.heatmap(df.corr(), annot=True)
+plt.title("Correlation Heatmap")
+plt.show()
+
+
+12.pairplot()
+sns.pairplot(df[["info.outcome.by.runs","info.outcome.by.wickets"]])
+plt.show()
+
+
+13.jointplot()sns.jointplot(x="info.outcome.by.runs", y="info.outcome.by.wickets", data=df)
+plt.show()
+
+
+
+14.rugplot()
+sns.rugplot(df["info.outcome.by.runs"])
+plt.show()
+
+
+15.displot()
+sns.displot(df["info.outcome.by.runs"], kde=True)
+plt.show()
