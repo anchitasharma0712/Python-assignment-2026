@@ -1,0 +1,483 @@
+A) NUMPY LIBRARY                                                                                                                                                                                                            1. Import Libraries and Load Dataset
+import numpy as np
+import pandas as pd
+
+df = pd.read_csv("International_T20_Data.csv")
+
+runs = pd.to_numeric(df["info.outcome.by.runs"], errors="coerce").dropna().to_numpy()
+wickets = pd.to_numeric(df["info.outcome.by.wickets"], errors="coerce").dropna().to_numpy()
+
+2. np.array()
+runs_array = np.array(runs)
+print(runs_array)
+
+3. np.mean()
+print("Average Runs Margin:", np.mean(runs))
+
+4. np.median()
+print("Median Runs Margin:", np.median(runs))
+
+5. np.std()
+print("Standard Deviation:", np.std(runs))
+
+6. np.var()
+print("Variance:", np.var(runs))
+
+7. np.min()
+print("Minimum Runs:", np.min(runs))
+
+8. np.max()
+print("Maximum Runs:", np.max(runs))
+
+9. np.sum()
+print("Total Runs Margin:", np.sum(runs))
+
+10. np.sort()
+sorted_runs = np.sort(runs)
+print(sorted_runs)
+
+11. np.unique()
+print(np.unique(wickets))
+
+12. np.reshape()
+reshaped = runs[:20].reshape(4,5)
+print(reshaped)
+
+13. np.linspace()
+print(np.linspace(0,100,10))
+
+14. np.arange()
+print(np.arange(0,50,5))
+
+15. np.random.randint()
+random_sample = np.random.randint(0,100,10)
+print(random_sample)
+
+16. np.sqrt()
+print(np.sqrt(runs[:10]))
+
+17. np.log()
+print(np.log(runs[:10] + 1)
+
+18. np.corrcoef()
+print(np.corrcoef(runs[:100], wickets[:100]))
+
+19. np.concatenate()
+combined = np.concatenate((runs[:10], wickets[:10]))
+print(combined)
+
+20. np.where()
+high_margin = np.where(runs > 50)
+print(runs[high_margin])
+
+B) PANDAS LIBRARY  
+1. Import Pandas and Load Dataset
+import pandas as pd
+df = pd.read_csv("International_T20_Data.csv")
+print(df.head())
+
+2. head()
+print(df.head())
+
+3. tail()
+print(df.tail())
+
+4. info()
+print(df.info())
+
+5. describe()
+print(df.describe())
+
+6. shape
+print(df.shape)
+
+7. columns
+print(df.columns)
+
+8. value_counts()
+print(df["info.outcome.winner"].value_counts())
+
+9. isnull()
+print(df.isnull().sum())
+
+10. dropna()
+clean_df = df.dropna()
+print(clean_df.head())
+
+11. fillna()
+df["info.outcome.by.runs"] = df["info.outcome.by.runs"].fillna(0)
+
+12. groupby()
+group_data = df.groupby("info.gender")["info.outcome.by.runs"].mean()
+print(group_data)
+
+13. sort_values()
+sorted_df = df.sort_values(by="info.outcome.by.runs", ascending=False)
+print(sorted_df.head())
+
+14. loc[]
+print(df.loc[df["info.outcome.by.runs"] > 50])
+
+15. iloc[]
+print(df.iloc[0:10])
+
+16. unique()
+print(df["info.city"].unique())
+
+17. nunique()
+print(df["info.city"].nunique())
+
+18. rename()
+df.rename(columns={"info.city": "City"}, inplace=True)
+
+19. drop()
+df.drop(columns=["info.match_type"], inplace=True)
+
+20. corr()
+print(df[["info.outcome.by.runs","info.outcome.by.wickets"]].corr())   
+
+C) SEABORN      
+1. countplot()
+import seaborn as sns
+import matplotlib.pyplot as plt
+
+sns.countplot(x="info.gender", data=df)
+plt.title("Count of Matches by Gender")
+plt.show()
+
+2.barplot()
+sns.barplot(x="info.toss.decision", y="info.outcome.by.runs", data=df)
+plt.title("Average Runs by Toss Decision")
+plt.show()
+
+3.histplot()
+sns.histplot(df["info.outcome.by.runs"], kde=True)
+plt.title("Distribution of Runs")
+plt.show()
+
+4.kdeplot()
+sns.kdeplot(df["info.outcome.by.runs"], fill=True)
+plt.title("Density Plot of Runs")
+plt.show()
+
+5.boxplot()
+sns.boxplot(x="info.toss.decision", y="info.outcome.by.runs", data=df)
+plt.title("Boxplot of Runs by Toss Decision")
+plt.show()
+
+6.violinplot()
+sns.violinplot(x="info.gender", y="info.outcome.by.wickets", data=df)
+plt.title("Violin Plot")
+plt.show()
+
+7.stripplot()
+sns.stripplot(x="info.toss.decision", y="info.outcome.by.runs", data=df)
+plt.title("Strip Plot")
+plt.show()
+
+8.swarmplot()
+sns.swarmplot(x="info.toss.decision", y="info.outcome.by.wickets", data=df)
+plt.title("Swarm Plot")
+plt.show()
+
+9.scatterplot()
+sns.scatterplot(x="info.outcome.by.runs", y="info.outcome.by.wickets", data=df)
+plt.title("Scatter Plot")
+plt.show()
+
+10.lineplot()
+sns.lineplot(x=df.index, y="info.outcome.by.runs", data=df)
+plt.title("Line Plot")
+plt.show()
+
+11.heatmap()
+sns.heatmap(df.corr(), annot=True)
+plt.title("Correlation Heatmap")
+plt.show()
+
+12.pairplot()
+sns.pairplot(df[["info.outcome.by.runs","info.outcome.by.wickets"]])
+plt.show()
+
+13.jointplot()sns.jointplot(x="info.outcome.by.runs", y="info.outcome.by.wickets", data=df)
+plt.show()
+
+
+14.rugplot()
+sns.rugplot(df["info.outcome.by.runs"])
+plt.show()
+
+15.displot()
+sns.displot(df["info.outcome.by.runs"], kde=True)
+plt.show()     
+
+D) MATPLOTLIB     
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# Load dataset
+df = pd.read_csv("International_T20_Data.csv")
+
+# Clean column names
+df.columns = df.columns.str.strip()
+
+# Convert numeric columns
+df["info.outcome.by.runs"] = pd.to_numeric(df["info.outcome.by.runs"], errors="coerce")
+df["info.outcome.by.wickets"] = pd.to_numeric(df["info.outcome.by.wickets"], errors="coerce")
+
+1. Line Plot (plt.plot)
+plt.figure()
+plt.plot(df["info.outcome.by.runs"].dropna())
+plt.title("Runs Margin Trend")
+plt.xlabel("Match Index")
+plt.ylabel("Runs")
+plt.show()
+
+2. Scatter Plot (plt.scatter)
+plt.figure()
+plt.scatter(df["info.outcome.by.runs"], df["info.outcome.by.wickets"])
+plt.xlabel("Runs")
+plt.ylabel("Wickets")
+plt.title("Runs vs Wickets")
+plt.show()
+
+3. Bar Chart
+(plt.bar)
+winner_counts = df["info.outcome.winner"].value_counts().head(10)
+
+plt.figure()
+plt.bar(winner_counts.index, winner_counts.values)
+plt.xticks(rotation=90)
+plt.title("Top 10 Teams by Wins")
+plt.show()
+
+4. Horizontal Bar Chart (plt.barh)
+plt.figure()
+plt.barh(winner_counts.index, winner_counts.values)
+plt.title("Top Teams by Wins")
+plt.show()
+
+5. Histogram (plt.hist)
+plt.figure()
+plt.hist(df["info.outcome.by.runs"].dropna(), bins=20)
+plt.title("Distribution of Runs Margin")
+plt.xlabel("Runs")
+plt.ylabel("Frequency")
+plt.show()
+
+6. Pie Chart (plt.pie)
+toss_counts = df["info.toss.decision"].value_counts()
+
+plt.figure()
+plt.pie(toss_counts.values, labels=toss_counts.index, autopct="%1.1f%%")
+plt.title("Toss Decision Distribution")
+plt.show()
+
+7. Box Plot (plt.boxplot)
+plt.figure()
+plt.boxplot(df["info.outcome.by.runs"].dropna())
+plt.title("Boxplot of Runs Margin")
+plt.show()
+
+8. Stem Plot (plt.stem)
+runs = df["info.outcome.by.runs"].dropna().head(20)
+
+plt.figure()
+plt.stem(runs)
+plt.title("Stem Plot of Runs")
+plt.show()
+
+9. Step Plot (plt.step)
+runs = df["info.outcome.by.runs"].dropna().head(50)
+
+plt.figure()
+plt.step(range(len(runs)), runs)
+plt.title("Step Plot of Runs")
+plt.show()
+
+10. Area Plot (plt.fill_between)
+runs = df["info.outcome.by.runs"].dropna().head(50)
+
+plt.figure()
+plt.fill_between(range(len(runs)), runs)
+plt.title("Area Plot of Runs")
+plt.show()
+
+11. Stack Plot (plt.stackplot)
+runs = df["info.outcome.by.runs"].dropna().head(20)
+wickets = df["info.outcome.by.wickets"].dropna().head(20)
+
+plt.figure()
+plt.stackplot(range(len(runs)), runs, wickets)
+plt.title("Stack Plot")
+plt.show()
+
+12. Error Bar Plot (plt.errorbar)
+runs = df["info.outcome.by.runs"].dropna().head(20)
+
+plt.figure()
+plt.errorbar(range(len(runs)), runs, yerr=2)
+plt.title("Error Bar Plot")
+plt.show()
+
+13. Violin Plot (plt.violinplot)
+plt.figure()
+plt.violinplot(df["info.outcome.by.runs"].dropna())
+plt.title("Violin Plot")
+plt.show()
+
+14. Hexbin Plot (plt.hexbin)
+plt.figure()
+plt.hexbin(df["info.outcome.by.runs"], df["info.outcome.by.wickets"], gridsize=20)
+plt.title("Hexbin Plot")
+plt.show()
+
+15. Subplots (plt.subplot)
+Python
+Copy code
+plt.figure()
+
+plt.subplot(1,2,1)
+plt.hist(df["info.outcome.by.runs"].dropna())
+plt.title("Runs Histogram")
+
+plt.subplot(1,2,2)
+plt.hist(df["info.outcome.by.wickets"].dropna())
+plt.title("Wickets Histogram")
+
+plt.show()
+
+E) MOST PLAYED PLAYER                                                                                                                                           df['teams'] = df['teams'].apply(ast.literal_eval)
+
+df['team_pair'] = df['teams'].apply(lambda x: tuple(sorted(x)))
+
+top_pair = df['team_pair'].value_counts().head(1)
+
+print("\nMost frequent team pair:")
+print(top_pair)
+     
+Most frequent team pair:
+team_pair
+(Australia, England)    45
+Name: count, dtype: int64   
+
+F) SCORECARD     
+def get_scorecard(innings_data):
+
+    innings = ast.literal_eval(innings_data)
+
+    scorecards = []
+
+    for inning in innings:
+        inning_name = list(inning.keys())[0]
+        data = inning[inning_name]
+
+        deliveries = data['deliveries']
+
+        batsman_runs = {}
+        bowler_wickets = {}
+
+        for ball in deliveries:
+            over = list(ball.keys())[0]
+            details = ball[over]
+
+            batsman = details['batsman']
+            bowler = details['bowler']
+
+            runs = details['runs']['batsman']
+
+            batsman_runs[batsman] = batsman_runs.get(batsman,0) + runs
+
+            if 'wicket' in details:
+                bowler_wickets[bowler] = bowler_wickets.get(bowler,0) + 1
+
+        top_batsmen = pd.DataFrame(
+            sorted(batsman_runs.items(), key=lambda x:x[1], reverse=True)[:4],
+            columns=['Batsman','Runs']
+        )
+
+        top_bowlers = pd.DataFrame(
+            sorted(bowler_wickets.items(), key=lambda x:x[1], reverse=True)[:4],
+            columns=['Bowler','Wickets']
+        )
+
+        scorecard = pd.concat([top_batsmen, top_bowlers], axis=1)
+        scorecards.append(scorecard)
+
+    return scorecards
+     
+
+match_scorecards = get_scorecard(df['innings'][0])
+
+team1_scorecard = match_scorecards[0]
+team2_scorecard = match_scorecards[1]
+
+print(team1_scorecard)
+print(team2_scorecard)
+     
+     Batsman  Runs          Bowler  Wickets
+0   AJ Finch    43      SL Malinga        2
+1  M Klinger    38  PADLR Sandakan        1
+2    TM Head    31   DAS Gunaratne        1
+3  AJ Turner    18   JRMVB Sanjaya        1
+           Batsman  Runs      Bowler  Wickets
+0    DAS Gunaratne    52     A Zampa      2.0
+1   EMDY Munaweera    44   AJ Turner      2.0
+2      N Dickwella    30  PJ Cummins      1.0
+3  TAM Siriwardana    15         NaN      NaN    
+
+G) TOP THREE VENUE                                                                          
+import pandas as pd
+df = pd.read_csv("International_T20_Data.csv")
+venue_counts = df['info.venue'].value_counts()
+top_three_venues = venue_counts.head(3)
+print("Top 3 venues that hosted the greatest number of matches:")
+print(top_three_venues)
+
+Top 3 Venues:
+venue
+Dubai International Cricket Stadium    62
+Sheikh Zayed Stadium                   41
+Shere Bangla National Stadium          39
+Name: count, dtype: int64    
+
+H) WIN PERCENTAGE               
+import pandas as pd
+import ast
+from collections import Counter
+
+df = pd.read_csv("International_T20_Data.csv")
+
+teams_column = df['info.teams'].dropna().apply(ast.literal_eval)
+
+matches_played = Counter()
+for teams in teams_column:
+    for team in teams:
+        matches_played[team] += 1
+
+matches_won = df['info.outcome.winner'].value_counts().to_dict()
+
+team_stats = []
+for team, played in matches_played.items():
+    won = matches_won.get(team, 0)
+    win_percentage = (won / played) * 100
+    team_stats.append((team, played, won, win_percentage))
+
+result = pd.DataFrame(team_stats, columns=["Team", "Matches Played", "Matches Won", "Win Percentage"])
+
+top5 = result.sort_values(by="Win Percentage", ascending=False).head(5)
+
+print(top5)
+
+           Team  Matches Played  Matches Won  Win Percentage
+Belgium              3              3          100.00
+Spain                6              5           83.33
+Germany             17             13           76.47
+Namibia             34             25           73.53
+Afghanistan         75             51           68.00
+
+
+
+
+
+
